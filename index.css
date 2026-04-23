@@ -1,0 +1,124 @@
+.flex{
+    
+    border-radius: 1.5rem;
+    padding: 1rem;
+    display: none;
+}
+
+.img {
+    margin-top: 1rem;
+    object-fit: cover;
+    border-radius: 10px;
+    width: 200px;
+    height: 200px;
+}
+
+input{
+    border: 1px solid black;
+    font-size: 1.2rem;
+    padding: 0.5rem;
+}
+
+.btn{
+    color: white;
+    font-size: 1rem;
+}
+
+.btn:hover{
+    color: white ;
+    background-color: black !important;
+}
+
+.valid-feedback, .invalid-feedback{
+    margin: 0;
+    display: block;
+}
+
+.card{
+    padding: 1rem;
+    gap: 1rem;
+}
+
+.card-body{
+   
+  border-top: 1px solid rgba(0, 0, 0, 0.473);
+  padding: 0;
+  padding-top: 1rem;
+    
+}
+
+.card-img{
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+}
+
+.wrapper{
+    width: 50px;
+    height: 50px;
+    border-radius: 100%; 
+    overflow: hidden; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    border: 1px solid black;
+    align-self: center;
+
+}
+#form{
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    width: 900px;
+    z-index: 12;
+    background-color: white;
+    color: black;
+    
+}
+#confirm{
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    width: 350px;
+    height: 250px;
+    z-index: 13;
+    background-color: white;
+    color: black;
+
+    
+}
+
+.box-shadow, #confirm-shadow{
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+
+    
+    background: rgba(0, 0, 0, 0.3);
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 11;
+ 
+}
+
+
+
+.search:focus{
+    outline: 0px;
+}
+
+h6{
+    margin-bottom: 0px;
+}
+p{
+    margin-bottom: 0.5rem;
+}
+
+.table{
+    max-width: 90%;
+    margin: 0px auto;
+}
+
+

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+    <link rel="stylesheet" href="./bootstrap-5.3.8/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="./index.css">
+    <script src="./bootstrap-5.3.8/dist/js/bootstrap.js"></script>
+    <script src="./jquery-4.0.0.min.js"></script>
+    <script src="./index.js " defer></script>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <form id="form" class="row flex position-fixed">
+            <div class="col-6 mb-2">
+                <label class="fw-medium" for="full">Full Name</label>
+                <input type="text" class="form-control " id="full" placeholder="Your Full Name" required>
+
+            </div>
+
+
+            <div class="col-6 mb-2">
+                <label class="fw-medium" for="email">Email</label>
+                <input type="email" class="form-control" id="email" placeholder="Your Email" required>
+
+            </div>
+
+            <div class=" col-6 mb-2">
+                <label class="fw-medium" for="password">Password</label>
+                <input type="password" class="form-control" id="password" placeholder="Your Password" required>
+
+            </div>
+
+            <div class="col-6 d-flex gap-3 mb-2">
+
+                <div class="flex-grow-1">
+                    <label class="fw-medium" for="date">Date Of Birth</label>
+                    <input type="date" class="form-control" id="date" required>
+
+                </div>
+                <div class="flex-grow-1">
+                    <label class="fw-medium" for="age">Age</label>
+                    <input type="number" class="form-control" id="age" placeholder="Your Age" required disabled>
+
+                </div>
+            </div>
+
+            <div class="mb-2 ">
+                <label class="fw-medium me-3" class="d-block" for="gender">Gender</label>
+                <div class="form-check form-check-inline mb-0">
+                    <input class="form-check-input" type="radio" name="RadioOptions" id="radio1" value="male">
+                    <label class="form-check-label" for="radio1">Male</label>
+                </div>
+                <div class="form-check form-check-inline mb-0">
+                    <input class="form-check-input" type="radio" name="RadioOptions" id="radio2" value="female">
+                    <label class="form-check-label" for="radio2">Female</label>
+                </div>
+                <div id="last-radio" class="form-check form-check-inline mb-0">
+                    <input class="form-check-input" type="radio" name="RadioOptions" id="radio3" value="other">
+                    <label class="form-check-label" for="radio3">Other</label>
+                </div>
+
+            </div>
+
+
+            <div class="mb-2 ">
+                <label class="fw-medium me-3" class="d-block" for="hobbies">Hobbies</label>
+                <div class="form-check form-check-inline mb-0">
+                    <input class="form-check-input" type="checkbox" name="hobbies" id="Checkbox1" value="Editing">
+                    <label class="form-check-label" for="Checkbox1">Editing</label>
+                </div>
+                <div class="form-check form-check-inline mb-0">
+                    <input class="form-check-input" type="checkbox" name="hobbies" id="Checkbox2" value="Photography">
+                    <label class="form-check-label" for="Checkbox2">Photography</label>
+                </div>
+                <div id="last-checkBox" class="form-check form-check-inline mb-0">
+                    <input class="form-check-input" type="checkbox" name="hobbies" id="Checkbox3" value="Animation">
+                    <label class="form-check-label" for="Checkbox3">Animation</label>
+                </div>
+
+            </div>
+
+            <div class=" col-6 mb-2">
+                <label class="fw-medium" for="photo">Profile Photo</label>
+                <input type="file" class="form-control" id="photo" accept="image/png, image/jpeg">
+
+                <div class="mb-2">
+                    <label class="fw-medium" for="country">Country</label>
+                    <select id="country" class="form-select" aria-label="Default select example">
+                        <option value="" selected disabled>Select Country</option>
+                        <option value="India">India</option>
+                        <option value="Canada">Canada</option>
+                        <option value="Europe">Europe</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="mb-2 ">
+                    <label class="fw-medium" for="address">Address</label>
+                    <textarea type="text" class="form-control" id="address" placeholder="Your Current Address"
+                        required></textarea>
+
+                </div>
+            </div>
+            <img class="col-4 flex-grow-0 d-block" id="img" src="" alt="">
+
+            <div class="mb-2 ">
+                <div id="terms" class="form-check">
+                    <input type="checkbox" name="terms" value="true" class="form-check-input" id="dropdownCheck">
+                    <label class="form-check-label" for="dropdownCheck">Accept Terms</label>
+                </div>
+
+            </div>
+
+
+            <div class="d-flex gap-3 justify-content-end">
+                <button type="reset" id="rs-button" class="btn bg-primary">Reset</button>
+                <button type="button" id="sb-button" class="btn bg-primary ">Submit</button>
+            </div>
+
+
+        </form>
+
+
+        <div class="d-flex justify-content-center my-3">
+            <div class="border border-black rounded d-flex align-items-center p-1 gap-2">
+                <img class="d-block" src="./search.png" alt="" height="30px">
+                <input id="search" class="search border border-0 p-0" type="text" placeholder="Search">
+            </div>
+
+        </div>
+        <button id="shw-btn" class="btn btn-success">Add data</button>
+
+        <div class="row row-cols-3 gy-3 gx-3 my-3" id="show">
+
+        </div>
+
+        
+        
+        
+    </div>
+    <table class="table ">
+        <thead>
+            <tr>
+                <th>Profile</th>
+                <th>Student Id</th>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th>DOB</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Hobbies</th>
+                <th>Country</th>
+                <th>Address</th>
+                <th>Action</th>
+            </tr>
+            
+        </thead>
+        <tbody id="tblData">
+            
+        </tbody>
+
+    </table>
+
+    <div id="confirm-shadow">
+        <div id="confirm" class="position-fixed rounded p-3 d-flex flex-column justify-content-between">
+            <h2 id="note">This is warning</h2>
+            <div id="confirm-btn" class="align-self-end">
+                <button id="cancel" data-conform="cancel" class="btn bg-danger px-3 fs-5">Cancel</button>
+                <button id="yes"  data-conform="yes"  class="btn bg-primary px-4 fs-5">Yes</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
