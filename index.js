@@ -4,7 +4,7 @@ let localData = JSON.parse(storage.getItem("data")) || [];
 let isEdit;
 let submitBtn = $("#sb-button")
 
-printTable()
+showPages()
 
 $("#photo").on("change", function logPhoto(event) {
     const file = event.target.files[0]; 
@@ -52,9 +52,9 @@ submitBtn.on("click", function(){
 
     storage.setItem("data", JSON.stringify(localData))
 
-    $("#rs-button").click()
+    // $("#rs-button").click()
     hideForm()
-    printTable()
+    showPages()
     submitBtn.textContent = "Submit";
 
 });
@@ -228,10 +228,11 @@ function reset()
 }
 
 
-function printTable(given = localData){
+function printTable(given = localData, start = 0, end = 2){
 
+    
     let tblData = $("#tblData")
-    tblData.html(given.map(createRow).join(""));
+    tblData.html(given.slice(start, end).map(createRow).join(""));
 
 }
 
@@ -272,7 +273,7 @@ $("#shw-btn").on("click", showForm)
 box.on("click", hideForm)
 
 function hideForm(){
-    $("#rs-button").click()
+    // $("#rs-button").click()
     form.css("display", "none");
     box.detach()
 
@@ -359,18 +360,18 @@ function deleteRow(id){
 
         localData.splice(index, 1);
         storage.setItem("data", JSON.stringify(localData));
-        printTable();
+        showPages()
     }
 }
 
-$("#cancel").on("click", "[data-conform]", function cancle(){
+// $("#cancel").on("click", "[data-conform]", function cancle(){
 
-    let btn = $(this).data("conform")
+//     let btn = $(this).data("conform")
 
-    if(btn == "yes")
+//     if(btn == "yes")
     
-    $("#confirm-shadow").hide()
-})
+//     $("#confirm-shadow").hide()
+// })
 
 
 function getFormData(){
@@ -388,4 +389,87 @@ function getFormData(){
     }
 }
 
+$("#row").on("change", function(){
+    // console.log($(this).val());
+    showPages($(this).val(), $(".active").text())
+})
 
+$(".pagination").on("click", ".page", function(){
+
+    $(".page-item").removeClass("active")
+    $(this).closest(".page-item").addClass("active")
+    console.log($("#row").val())
+    console.log($(this).val())
+    showPages($("#row").val(), $(this).text())
+})
+
+
+function showPages(rows = $("#row").val(), page = $(".active").text()){
+
+    let last = rows * page
+    let first  = last - rows
+
+    printTable(undefined , first, last);
+}
+
+function availablePages(){
+
+    let length = localData.length;
+    let row = $("#row").val();
+    let totalPages =  Math.ceil(length / row)
+
+    let curent = parseInt($("active").text())
+
+
+
+    $(".page").each(function(index){
+        $(this).removeClass("active")
+        if(curent < 3){
+            $(this).addClass("active")
+            showPages()
+        }
+           
+    })
+
+}
+
+$(".next").on("click", function availablePages(){
+
+    let length = localData.length;
+    let row = $("#row").val();
+    let totalPages =  Math.ceil(length / row)
+
+    let curent = parseInt($("active").text())
+    $(".page").removeClass("active")
+
+
+
+    $(".page").each(function(index){
+        if(curent + 1 == index){
+            $(this).addClass("active")
+            showPages()
+        }
+           
+    })
+
+})
+
+
+
+
+$(".table").on("click", ".head", function(){
+
+    // availablePages()
+    $(".head").removeClass("sort")
+    $(this).addClass("sort")
+
+    let column = $(this).data("id")
+    console.log(column);
+    
+    if(column == "id")
+        localData.sort((a, b) => a[column] - b[column]);
+    else
+        localData.sort((a, b) => a[column].localeCompare(b[column]));
+    showPages()
+
+})

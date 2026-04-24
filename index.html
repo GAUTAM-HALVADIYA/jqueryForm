@@ -141,34 +141,45 @@
 
         </div>
 
-        
-        
-        
+
+
+
     </div>
-    <table class="table ">
+
+    <div class="nf-row d-flex justify-content-end me-auto ms-auto">
+
+        <select id="row" class="form-select" aria-label="Default select example">
+            <option value="2" selected>2</option>
+            <option value="3">3</option>
+            <option value="5">5</option>
+            <option value="20">20</option>
+        </select>
+    </div>
+
+    <table class="table ms-auto me-auto">
         <thead>
             <tr>
                 <th>Profile</th>
-                <th>Student Id</th>
-                <th>Full Name</th>
-                <th>Email</th>
-                <th>DOB</th>
-                <th>Age</th>
-                <th>Gender</th>
-                <th>Hobbies</th>
-                <th>Country</th>
+                <th data-id="id" class="head">Student Id</th>
+                <th data-id="name" class="head ">Full Name</th>
+                <th data-id="email">Email</th>
+                <th data-id="bod" class="head ">DOB</th>
+                <th data-id="age" class="head ">Age</th>
+                <th data-id="gender" class="head ">Gender</th>
+                <th data-id="hobbies">Hobbies</th>
+                <th data-id="country" class="head ">Country</th>
                 <th>Address</th>
                 <th>Action</th>
             </tr>
-            
+
         </thead>
         <tbody id="tblData">
-            
+
         </tbody>
 
     </table>
 
-    <div id="confirm-shadow">
+    <!-- <div id="confirm-shadow">
         <div id="confirm" class="position-fixed rounded p-3 d-flex flex-column justify-content-between">
             <h2 id="note">This is warning</h2>
             <div id="confirm-btn" class="align-self-end">
@@ -176,6 +187,26 @@
                 <button id="yes"  data-conform="yes"  class="btn bg-primary px-4 fs-5">Yes</button>
             </div>
         </div>
+    </div> -->
+
+    <div class="pages d-flex justify-content-end my-3 ms-auto me-auto">
+        <nav aria-label="...">
+            <ul class="pagination">
+                <li class="page-item disabled skip">
+                    <a class="page-link ">Previous</a>
+                </li>
+
+                <li class="page-item active"><a class="page-link page">1</a></li>
+                <li class="page-item">
+                    <a class="page-link page">2</a>
+                </li>
+                <li class="page-item"><a class="page-link page">3</a></li>
+
+                <li class="page-item">
+                    <a class="page-link next">Next</a>
+                </li>
+            </ul>
+        </nav>
     </div>
 
 </body>

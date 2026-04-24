@@ -116,9 +116,26 @@ p{
     margin-bottom: 0.5rem;
 }
 
-.table{
+.table, .pages{
     max-width: 90%;
-    margin: 0px auto;
 }
 
+.nf-row{
+    max-width: 90%;
+}
 
+.nf-row > select{
+        max-width: 80px;
+}
+
+.sort{
+    background-color: rgba(0, 119, 255, 0.192) !important;
+}
+
+.page-item {
+  cursor: pointer !important;
+}
+
+.disabled {
+  cursor: not-allowed !important;
+}
