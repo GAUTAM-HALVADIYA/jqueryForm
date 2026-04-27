@@ -390,17 +390,18 @@ function getFormData(){
 }
 
 $("#row").on("change", function(){
-    // console.log($(this).val());
     showPages($(this).val(), $(".active").text())
 })
 
 $(".pagination").on("click", ".page", function(){
 
-    $(".page-item").removeClass("active")
-    $(this).closest(".page-item").addClass("active")
-    console.log($("#row").val())
-    console.log($(this).val())
-    showPages($("#row").val(), $(this).text())
+    $(".page-item").removeClass("active");
+
+    $(this).closest(".page-item").addClass("active");
+
+    let page = $(this).text(); 
+
+    showPages($("#row").val(), page);
 })
 
 
@@ -409,65 +410,99 @@ function showPages(rows = $("#row").val(), page = $(".active").text()){
     let last = rows * page
     let first  = last - rows
 
+    renderPages();
     printTable(undefined , first, last);
 }
 
-function availablePages(){
+function renderPages() {
 
     let length = localData.length;
-    let row = $("#row").val();
-    let totalPages =  Math.ceil(length / row)
+    let row = parseInt($("#row").val());
+    let totalPages = Math.ceil(length / row);
 
-    let curent = parseInt($("active").text())
+    let container = $(".pagination");
+    let current = parseInt($(".active").text()) || 1;
+    current = current > totalPages ? totalPages : current;
+    
 
+    container.html("");
 
+    container.append(`<li class="page-item prev"><a class="page-link">Prev</a></li>`);
+    if(current == 1)
+        $(".prev").addClass("disabled")
+    
+    
 
-    $(".page").each(function(index){
-        $(this).removeClass("active")
-        if(curent < 3){
-            $(this).addClass("active")
-            showPages()
-        }
-           
-    })
+    for (let i = 1; i <= totalPages; i++) {
+        container.append(`
+            <li class="page-item ${i === current ? "active" : ""}">
+                <a class="page-link page">${i}</a>
+            </li>
+        `);
+    }
 
+    container.append(`<li class="page-item next"><a class="page-link">Next</a></li>`);
+    
+    if(current == totalPages)
+        $(".next").addClass("disabled")
+    
+
+    
 }
 
-$(".next").on("click", function availablePages(){
 
-    let length = localData.length;
-    let row = $("#row").val();
-    let totalPages =  Math.ceil(length / row)
+$(".pagination").on("click", ".prev", function () {
 
-    let curent = parseInt($("active").text())
-    $(".page").removeClass("active")
+    let current = parseInt($(".active").text()) || 1;
 
+    if (current > 1) {
+        let prev = current - 1;
 
+        $(".page-item").removeClass("active");
+        $(".page").each(function () {
+            if ($(this).text() == prev) {
+                $(this).closest(".page-item").addClass("active");
+            }
+        });
 
-    $(".page").each(function(index){
-        if(curent + 1 == index){
-            $(this).addClass("active")
-            showPages()
-        }
-           
-    })
+        showPages($("#row").val(), prev);
+    }
+        
+});
 
-})
+$(".pagination").on("click", ".next", function () {
 
+    let current = parseInt($(".active").text()) || 1;
+    let row = parseInt($("#row").val());
+    let totalPages = Math.ceil(localData.length / row);
 
+    if (current < totalPages) {
+        let next = current + 1;
+
+        $(".page-item").removeClass("active");
+        $(".page").each(function () {
+            if ($(this).text() == next) {
+                $(this).closest(".page-item").addClass("active");
+            }
+        });
+
+        showPages(row, next);
+    }
+});
 
 
 $(".table").on("click", ".head", function(){
 
-    // availablePages()
+
     $(".head").removeClass("sort")
     $(this).addClass("sort")
 
     let column = $(this).data("id")
     console.log(column);
     
-    if(column == "id")
+    if(column == "id"){
         localData.sort((a, b) => a[column] - b[column]);
+    }
     else
         localData.sort((a, b) => a[column].localeCompare(b[column]));
     showPages()
